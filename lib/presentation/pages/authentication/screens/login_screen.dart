@@ -61,7 +61,15 @@ class _LoginState extends State<LoginScreen> {
           ),
           //06 ahora generamos el boton que ejecute el cambio de estado y nos pase
           //a la paginade contenido
-          ElevatedButton(onPressed: () {}, child: const Text('Iniciar Sesion'))
+          ElevatedButton(
+              onPressed: () {
+                //validamos que hayan escrito el nombre.
+                // si hay un nombre ya me puedo mover a la otra pantalla.
+                if (_inputText.isNotEmpty) {
+                  _authController.username = _textController.text;
+                }
+              },
+              child: const Text('Iniciar Sesion'))
         ],
       ),
     );

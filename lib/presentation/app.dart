@@ -4,7 +4,9 @@ import 'package:misiontic_template/domain/use_case/controllers/auth_controller.d
 import 'package:misiontic_template/domain/use_case/controllers/data_controller.dart';
 import 'package:misiontic_template/domain/use_case/controllers/theme_controller.dart';
 import 'package:misiontic_template/domain/use_case/theme_management.dart';
-import 'package:misiontic_template/presentation/pages/stateless/stateless_page.dart';
+import 'package:misiontic_template/presentation/pages/authentication/auth_page.dart';
+import 'package:misiontic_template/presentation/pages/contenido/content_page.dart';
+import 'package:misiontic_template/presentation/pages/detalles/details_page.dart';
 import 'package:misiontic_template/presentation/theme/theme.dart';
 
 class App extends StatefulWidget {
@@ -49,7 +51,11 @@ class _AppState extends State<App> {
             theme: MyTheme.ligthTheme,
             darkTheme: MyTheme.darkTheme,
             themeMode: ThemeMode.system,
-            home: StatelessList(),
-          );
+            home: AutPage(),
+            routes: {
+                '/auth': (context) => AutPage(),
+                '/content': (context) => ContentPage(),
+                '/details': (context) => DetailsPage(),
+              });
   }
 }

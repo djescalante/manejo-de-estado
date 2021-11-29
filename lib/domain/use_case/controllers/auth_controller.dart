@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 class AuthController extends GetxController {
   final _username = RxString('');
 
-  set displayName(String name) {
+  set username(String name) {
     _username.value = name;
   }
 
