@@ -67,6 +67,7 @@ class _LoginState extends State<LoginScreen> {
                 // si hay un nombre ya me puedo mover a la otra pantalla.
                 if (_inputText.isNotEmpty) {
                   _authController.username = _textController.text;
+                  Get.offAllNamed('/content');
                 }
               },
               child: const Text('Iniciar Sesion'))
