@@ -13,6 +13,7 @@ class CustomAppBar extends AppBar {
     required this.controller,
     required this.context,
     required this.tile,
+    //SafeArea? body,
   }) : super(
           key: key,
           centerTitle: true,
