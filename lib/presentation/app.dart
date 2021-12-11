@@ -10,6 +10,7 @@ import 'package:misiontic_template/presentation/pages/detalles/details_page.dart
 import 'package:misiontic_template/presentation/theme/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 
+//https://www.youtube.com/watch?v=EXp0gq9kGxI
 class App extends StatefulWidget {
   final Future<FirebaseApp> _fbApp = Firebase.initializeApp();
   App({Key? key}) : super(key: key);

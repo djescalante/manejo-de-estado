@@ -6,10 +6,10 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:misiontic_template/domain/use_case/controllers/data_controller.dart';
 
-class ContentScreen extends StatelessWidget {
+class HomeScreen extends StatelessWidget {
   final DataController controller;
 
-  const ContentScreen({Key? key, required this.controller}) : super(key: key);
+  HomeScreen({Key? key, required this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +23,7 @@ class ContentScreen extends StatelessWidget {
                 title: Text(item),
                 onTap: () {
                   controller.select = index;
+                  Get.toNamed('/details');
                 },
               ),
               //cuando deslicemos hacia cualquier lado va a borrar el elemento

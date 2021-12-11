@@ -47,7 +47,7 @@ class _LoginState extends State<LoginScreen> {
         children: [
           TextField(
             controller: _textController,
-            decoration: const InputDecoration(labelText: 'Ingresa tu nombre:'
+            decoration: const InputDecoration(labelText: 'Ingresa tu Nombre:'
                 //lo podemos usar asi y sacar el texto del controlador
                 ),
             //tambien podemos usar el metodo onchange paraque cada vez que se esciba
@@ -67,7 +67,7 @@ class _LoginState extends State<LoginScreen> {
                 // si hay un nombre ya me puedo mover a la otra pantalla.
                 if (_inputText.isNotEmpty) {
                   _authController.username = _textController.text;
-                  Get.offAllNamed('/content');
+                  Get.offNamed('/content');
                 }
               },
               child: const Text('Iniciar Sesion'))

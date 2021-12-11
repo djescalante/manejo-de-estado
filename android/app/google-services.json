@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "520814553371",
+    "project_id": "sprint3-bcf3a",
+    "storage_bucket": "sprint3-bcf3a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:520814553371:android:0e25a694a3b3a33b800bbe",
+        "android_client_info": {
+          "package_name": "com.example.misiontic_template"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "520814553371-je1fq96i4095op27c097u0fks1su5i2s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtLpYC2bwC7sh9rpsc0aNS74jnu4MAtJg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "520814553371-je1fq96i4095op27c097u0fks1su5i2s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
