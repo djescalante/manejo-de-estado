@@ -8,9 +8,11 @@ import 'package:misiontic_template/presentation/pages/authentication/auth_page.d
 import 'package:misiontic_template/presentation/pages/contenido/content_page.dart';
 import 'package:misiontic_template/presentation/pages/detalles/details_page.dart';
 import 'package:misiontic_template/presentation/theme/theme.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class App extends StatefulWidget {
-  const App({Key? key}) : super(key: key);
+  final Future<FirebaseApp> _fbApp = Firebase.initializeApp();
+  App({Key? key}) : super(key: key);
 
   @override
   _AppState createState() => _AppState();
