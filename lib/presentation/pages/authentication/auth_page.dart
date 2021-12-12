@@ -26,11 +26,11 @@ class AutPage extends StatelessWidget {
       ),
       //ahora creamos el cuerpo
       //con un safe area para que se pinte en un area donde no lo tapen otros botones
-      body: const SafeArea(
+      body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 24.0, horizontal: 16.0),
           //llamamos a nuestro loginScreen
-          child: LoginScreen(),
+          child: LoginPage(),
         ),
       ),
     );

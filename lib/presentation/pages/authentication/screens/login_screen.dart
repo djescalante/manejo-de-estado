@@ -1,77 +1,138 @@
 //00 esta es unas de las pantallas de aut_page.dart
-
+import 'package:misiontic_template/domain/use_case/controllers/input_decorations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:misiontic_template/domain/use_case/controllers/auth_controller.dart';
+//import 'package:misiontic_template/domain/use_case/controllers/auth_controller.dart';
+import 'package:misiontic_template/domain/use_case/controllers/firebase_controller.dart';
+import 'package:misiontic_template/domain/use_case/controllers/login_form_provider.dart';
+import 'package:misiontic_template/presentation/pages/contenido/home_page.dart';
+import 'package:misiontic_template/presentation/widgets/auth_background.dart';
+import 'package:misiontic_template/presentation/widgets/card_container.dart';
+import 'package:provider/provider.dart';
 
-//01 como el login va a tener un texto necesitamos que tenga un widget con estado
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
-  //vinculamos el metodo estado
+class LoginPage extends StatefulWidget {
   @override
-  _LoginState createState() => _LoginState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-//01 esto es el estado y es una clase privada _
-class _LoginState extends State<LoginScreen> {
-  //02 como ya creamos el widget ahora hay que crear la interfaz es decir
-  //el layout con los elementos de la pantalla de inicio
-  //lo primero que necesitamos es un texto entonces nos hace falta un controlador de text
-  //03 controlador de texto - con esto creamos la variable para el texo
-  late TextEditingController _textController;
-  late String _inputText;
-  late AuthController _authController;
-  //04 como las variables son de inicio tardio las inicializamos
-  @override
-  void initState() {
-    super.initState();
-    _textController = TextEditingController();
-    _authController = Get.find(); //busca el controlador que inyecté en app.dart
-    // a los input text los vamos a inicializar conel controla dor de la pantalla
-  }
-
-  //01 creamos el  o los metodos
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
-    //05 con las variables creadas para el campo de texto, creamos la interfaz
-    //un build siempre lleva un return
-    //como vamos a crear un campo de texto y un boton los vamos a centrar.
-    return Center(
+    return Scaffold(
+        body: AuthBackground(
+            // Me permite hacer scroll si los hijos sobrepasan el tamaño
+            child: SingleChildScrollView(
       child: Column(
-        // que se extienda a lo ancho de la columna
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        //el tamaño principal sea el minimo
-        mainAxisSize: MainAxisSize.min,
-        //y ahora creamos los hijos los dos campos texto y boton
         children: [
-          TextField(
-            controller: _textController,
-            decoration: const InputDecoration(labelText: 'Ingresa tu Nombre:'
-                //lo podemos usar asi y sacar el texto del controlador
-                ),
-            //tambien podemos usar el metodo onchange paraque cada vez que se esciba
-            // se actualice el inputText y se ejecute y nos muestre por consola
-
-            onChanged: (String text) {
-              //cada vez q cambia el texto actualizo la variable _inputText
-              print(text);
-              _inputText = text;
-            },
+          SizedBox(height: 175),
+          CardContainer(
+            child: Column(
+              children: [
+                SizedBox(height: 10),
+                Text('Login', style: Theme.of(context).textTheme.headline4),
+                SizedBox(height: 30),
+                ChangeNotifierProvider(
+                  create: (_) => LoginFormProvider(),
+                  child: _LoginFormulario(),
+                )
+              ],
+            ),
           ),
-          //06 ahora generamos el boton que ejecute el cambio de estado y nos pase
-          //a la paginade contenido
-          ElevatedButton(
-              onPressed: () {
-                //validamos que hayan escrito el nombre.
-                // si hay un nombre ya me puedo mover a la otra pantalla.
-                if (_inputText.isNotEmpty) {
-                  _authController.username = _textController.text;
-                  Get.offNamed('/content');
-                }
-              },
-              child: const Text('Iniciar Sesion'))
+          SizedBox(height: 20),
+          TextButton(
+            onPressed: () {
+              Get.to(() => HomePage());
+            }, //Navigator.pushReplacementNamed(context, 'register'),
+            style:
+                ButtonStyle(shape: MaterialStateProperty.all(StadiumBorder())),
+            child: Text(
+              'Crear una nueva cuenta',
+              style: TextStyle(fontSize: 18, color: Colors.black87),
+            ),
+          ),
+          SizedBox(height: 20),
         ],
+      ),
+    )));
+  }
+}
+
+class _LoginFormulario extends StatelessWidget {
+  final controllerEmail = TextEditingController();
+  final controllerPassword = TextEditingController();
+  @override
+  Widget build(BuildContext context) {
+    final loginForm = Provider.of<LoginFormProvider>(context);
+    return Container(
+      child: Form(
+        key: loginForm.formKey,
+        // ignore: todo
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        child: Column(
+          children: [
+            TextFormField(
+              controller: this.controllerEmail,
+              autocorrect: false,
+              keyboardType: TextInputType.emailAddress,
+              decoration: InputDecorations.authInputDecoration(
+                  hintText: 'tucorreo@gmail.com',
+                  labelText: 'Correo electrónico',
+                  prefixIcon: Icons.alternate_email_rounded),
+              onChanged: (value) => loginForm.email = value,
+              validator: (value) {
+                String pattern =
+                    r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                RegExp regExp = new RegExp(pattern);
+
+                //ternario: toma la expresion regular y verifica que hace match el valor
+                return regExp.hasMatch(value ?? '')
+                    ? null
+                    : 'El valor ingresado no es válido';
+              },
+            ),
+            SizedBox(height: 30),
+            TextFormField(
+              controller: this.controllerPassword,
+              autocorrect: false,
+              obscureText: true,
+              keyboardType: TextInputType.emailAddress,
+              decoration: InputDecorations.authInputDecoration(
+                  hintText: '***********',
+                  labelText: 'Contraseña',
+                  prefixIcon: Icons.lock_outline),
+              onChanged: (value) => loginForm.password = value,
+              validator: (value) {
+                return (value != null && value.length >= 6)
+                    ? null
+                    : 'La contraseña debe tener 6 caracteres';
+              },
+            ),
+            SizedBox(height: 30),
+            MaterialButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
+                disabledColor: Colors.grey,
+                elevation: 0,
+                color: Colors.cyanAccent.shade400,
+                child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 80, vertical: 15),
+                    child: Text(
+                      'Ingresar',
+                      style: TextStyle(color: Colors.white),
+                    )),
+                onPressed: () async {
+                  LoginController loginController = Get.find();
+                  await loginController.login(
+                      controllerEmail.text, controllerPassword.text);
+                  // Get.to(() => ContentPage());
+
+                  // if (!loginForm.isValidForm() ) return;
+
+                  //Navigator.pushReplacementNamed(context, 'home');
+                }),
+          ],
+        ),
       ),
     );
   }

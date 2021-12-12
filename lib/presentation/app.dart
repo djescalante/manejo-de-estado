@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:misiontic_template/domain/use_case/controllers/auth_controller.dart';
@@ -8,7 +9,7 @@ import 'package:misiontic_template/presentation/pages/authentication/auth_page.d
 import 'package:misiontic_template/presentation/pages/contenido/content_page.dart';
 import 'package:misiontic_template/presentation/pages/detalles/details_page.dart';
 import 'package:misiontic_template/presentation/theme/theme.dart';
-import 'package:firebase_core/firebase_core.dart';
+//import 'package:firebase_core/firebase_core.dart';
 
 //https://www.youtube.com/watch?v=EXp0gq9kGxI
 class App extends StatefulWidget {

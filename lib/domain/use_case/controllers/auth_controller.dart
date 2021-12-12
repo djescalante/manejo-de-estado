@@ -1,4 +1,5 @@
-import 'package:get/get.dart';
+/* import 'package:get/get.dart';
+
 
 class AuthController extends GetxController {
   final _username = RxString('');
@@ -16,3 +17,4 @@ class AuthController extends GetxController {
   RxString get reactivePassword => _password;
   String get password => _username.value;
 }
+ */
