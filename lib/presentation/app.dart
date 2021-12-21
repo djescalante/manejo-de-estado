@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:misiontic_template/domain/use_case/controllers/auth_controller.dart';
+//import 'package:misiontic_template/domain/use_case/controllers/auth_controller.dart';
 import 'package:misiontic_template/domain/use_case/controllers/data_controller.dart';
 import 'package:misiontic_template/domain/use_case/controllers/theme_controller.dart';
 import 'package:misiontic_template/domain/use_case/theme_management.dart';
@@ -38,7 +38,7 @@ class _AppState extends State<App> {
   @override
   void initState() {
     Get.put(DataController()); // inyeccion del controlador DataController
-    Get.put(AuthController()); // inyeccion del controlador AuthControloller
+    //Get.put(AuthController()); // inyeccion del controlador AuthControloller
     ever(controller.reactiveDarkMode, (bool isDarkMode) {
       manager.changeTheme(isDarkMode: isDarkMode);
     });

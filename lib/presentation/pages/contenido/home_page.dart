@@ -10,7 +10,7 @@ import 'package:misiontic_template/presentation/widgets/appbar.dart';
 
 class HomePage extends StatelessWidget {
   final ThemeController _themeController = Get.find();
-  final AuthController _authController = Get.find();
+  //final AuthController _authController = Get.find();
   final DataController _dataController = Get.find();
   //HomePage({Key? key}) : super(key: key);
 

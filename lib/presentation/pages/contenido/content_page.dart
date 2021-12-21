@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:misiontic_template/domain/use_case/controllers/auth_controller.dart';
+//import 'package:misiontic_template/domain/use_case/controllers/auth_controller.dart';
 import 'package:misiontic_template/domain/use_case/controllers/theme_controller.dart';
 import 'package:misiontic_template/presentation/pages/contenido/chat.dart';
 import 'package:misiontic_template/presentation/pages/contenido/home_page.dart';
@@ -30,7 +30,7 @@ class _ContentPageState extends State<ContentPage> {
   @override
   Widget build(BuildContext context) {
     final ThemeController _themeController = Get.find();
-    final AuthController _authController = Get.find();
+    //final AuthController _authController = Get.find();
     return Scaffold(
       appBar: CustomAppBar(
           controller: _themeController,
@@ -49,7 +49,7 @@ class _ContentPageState extends State<ContentPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.account_circle, color: Colors.blue),
-            label: 'Profile',
+            label: 'GPS',
           ),
         ],
         currentIndex: _selectedIndex,
